@@ -1,0 +1,8 @@
+# vim
+*~
+
+*.o
+*.so
+build
+app/*_u.*
+Enclave/*_t.*

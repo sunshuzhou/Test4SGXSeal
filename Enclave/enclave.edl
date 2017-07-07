@@ -1,0 +1,16 @@
+enclave {
+  enum msg_code {
+    MSG_ERROR = 0,
+    MSG_OK = 1
+  };
+  trusted {
+    public msg_code ecall_generate_keypair([out, size=32]uint8_t *pk);
+    public msg_code ecall_seal_keypair();
+    public msg_code ecall_unseal_keypair([out, size=32]uint8_t *pk);
+  };
+  untrusted {
+    msg_code ocall_fs_write([in, string]char *filename, [in, count=len]uint8_t *data, size_t len);
+    msg_code ocall_fs_read([in, string]char *filename, [out, count=len]uint8_t *data, size_t len);
+    void ocall_print_string([in, string]char *msg, [in, count=len] uint8_t *data, size_t len);
+  };
+};
